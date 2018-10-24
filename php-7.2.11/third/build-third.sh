@@ -76,8 +76,24 @@ SCRIPT
     sh $tmp_dir/build_curl.sh > $tmp_dir/build_curl.log
 }
 
+compile_libxml2(){
+	tar zxf ${base_dir}/libxml2-2.9.8.tar.gz -C ${tmp_dir}
+    echo "Compiling libxml2..."
+    cat > $tmp_dir/build_libxml2.sh <<SCRIPT
+cd ${tmp_dir}/libxml2-2.9.8
+./configure --prefix=${output_dir} --disable-static \\
+--with-history --with-python=/usr/bin/python3.6
+make
+make install
+SCRIPT
+    sh $tmp_dir/build_libxml2.sh > $tmp_dir/build_libxml2.log
+}
+
 compile_iconv
 compile_freetype
 compile_openssl
 compile_zlib
 compile_curl
+##compile_libxml2
+
+##tar zxf ${base_dir}/libxml2-2.6.30.tar.gz -C $output_dir
