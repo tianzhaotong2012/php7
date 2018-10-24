@@ -1,2 +1,2 @@
-run  sh local_build.sh
-check output
+#####run  sh local_build.sh
+#####check output
