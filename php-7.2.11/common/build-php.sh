@@ -60,4 +60,7 @@ echo "Compiling PHP $php_ver ..."
     make install
 } > $compile_log
 
-
+install -Dm644 "${src_dir}/php.ini" "${install_dir}/php/etc/php.ini"
+sed -i "s+\${WORK_ROOT}+${install_dir}+g" "${install_dir}/php/etc/php.ini"
+install -Dm644 "${src_dir}/php-fpm.conf" "${install_dir}/php/etc/php-fpm.conf"
+sed -i "s+\${WORK_ROOT}+${install_dir}+g" "${install_dir}/php/etc/php-fpm.conf"
