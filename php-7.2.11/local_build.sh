@@ -29,4 +29,7 @@ for ver in ${versions[*]}; do
 	cd $install_dir
 	tar czf $output_dir/php-bin-$ver.tar.gz *
 	echo "Release php $ver binary success"
+	install -Dm644 "${base_dir}/common/php_install" "${output_dir}/php-install-$ver.sh"
+	sed -i "s+\${WORK_ROOT}+${install_dir}+g" "${output_dir}/php-install-$ver.sh"
+	sed -i "s+\${PHP_VER}+${ver}+g" "${output_dir}/php-install-$ver.sh"
 done
