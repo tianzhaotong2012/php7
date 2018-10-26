@@ -36,7 +36,8 @@ echo "Compiling PHP $php_ver ..."
         --prefix="${install_dir}/php" \
         --with-config-file-path="${install_dir}/php/etc" \
         --with-config-file-scan-dir="${install_dir}/php/etc/ext" \
-        --enable-bcmath \
+        --enable-opcache \
+	--enable-bcmath \
         --enable-fpm \
         --with-iconv-dir="${src_dir}/third" \
         --with-iconv="${src_dir}/third" \
@@ -60,10 +61,18 @@ echo "Compiling PHP $php_ver ..."
     make install
 } > $compile_log
 
+${install_dir}/php/bin/pear config-set ext_dir "${install_dir}/php/ext" system 
+
+install -dm755 "${install_dir}/php/etc/ext/.placeholder"
+install -dm755 "${install_dir}/php/ext/.placeholder"
+
 mv -f "${install_dir}/php/sbin/php-fpm" "${install_dir}/php/bin/php-cgi"
 install -Dm755 "${src_dir}/php-fpm.sh" "${install_dir}/php/sbin/php-fpm.sh"
 sed -i "s+\${WORK_ROOT}+${install_dir}+g" "${install_dir}/php/sbin/php-fpm.sh"
 
+sed -i 's|lib/php/extensions/no-debug-non-zts-[0-9]\+|ext|' ${install_dir}/php/bin/php-config ${install_dir}/php/include/php/main/build-defs.h
+sed -i 's|lib/php/extensions/debug-non-zts-[0-9]\+|ext|' ${install_dir}/php/bin/php-config ${install_dir}/php/include/php/main/build-defs.h
+find ${install_dir}/php/lib/php/extensions -name "opcache.so" |xargs -i mv {} ${install_dir}/php/ext/
 install -Dm644 "${src_dir}/php.ini" "${install_dir}/php/etc/php.ini"
 sed -i "s+\${WORK_ROOT}+${install_dir}+g" "${install_dir}/php/etc/php.ini"
 install -Dm644 "${src_dir}/php-fpm.conf" "${install_dir}/php/etc/php-fpm.conf"

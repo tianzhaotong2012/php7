@@ -62,7 +62,7 @@ mstart() {
     done
 
     echo -n "Starting php_fpm "
-    if $PHP_FPM_BIN $PHP_OPTS; then
+    if PHP_INI_SCAN_DIR=${WORK_ROOT}/php/etc/ext $PHP_FPM_BIN $PHP_OPTS; then
         sleep 1
         if wait_for 30 test -f $PHP_FPM_PID; then
             echo "done"
