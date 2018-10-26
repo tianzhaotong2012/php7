@@ -17,6 +17,7 @@ replace_text=(
     php/etc/ext
     php/include
     php/bin/check-conf
+    php/sbin/php-fpm.sh
     php/bin/dbunit
     php/bin/pear
     php/bin/peardev
