@@ -33,6 +33,7 @@ replace_text=(
     php/lib/php/peclcmd.php
     php/lib/php/PhpDocumentor/phpDocumentor
     php/lib/php/PHPUnit/Util/PHP.php
+    php/man/man8/php-fpm.8
 )
 
 replace_serialized=(
