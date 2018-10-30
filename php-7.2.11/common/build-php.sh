@@ -49,7 +49,8 @@ echo "Compiling PHP $php_ver ..."
         --enable-sysvsem \
         --enable-pcntl \
         --enable-zip \
-        --with-openssl="${src_dir}/third" \
+        --enable-mysqlnd \
+	--with-openssl="${src_dir}/third" \
         --with-zlib="${src_dir}/third" \
         --with-pear \
         --with-curl="${src_dir}/third" \

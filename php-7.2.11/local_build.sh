@@ -6,6 +6,7 @@ base_dir=$(cd `dirname $0` && pwd)
 output_dir=$base_dir/output
 tmp_dir=$base_dir/.tmp
 third_dir=$base_dir/third
+ext_dir=$base_dir/ext
 versions=(
     '7.2.11'
 )
@@ -26,6 +27,7 @@ for ver in ${versions[*]}; do
 	install_dir=$tmp_dir/install
 	mkdir $install_dir
 	sh build-php.sh $install_dir
+	sh $ext_dir/build-ext.sh $install_dir/php
 	cd $install_dir
 	tar czf $output_dir/php-bin-$ver.tar.gz *
 	echo "Release php $ver binary success"

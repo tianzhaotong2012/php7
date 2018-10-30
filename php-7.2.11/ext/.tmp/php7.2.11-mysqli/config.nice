@@ -1,0 +1,10 @@
+#! /bin/sh
+#
+# Created by configure
+
+CFLAGS='-g -O2 -fPIC' \
+CC='/usr/bin/gcc' \
+CXX='/usr/bin/gcc' \
+'./configure' \
+'--with-php-config=/home/work/php/php-7.2.11/.tmp/install/php/bin/php-config' \
+"$@"
