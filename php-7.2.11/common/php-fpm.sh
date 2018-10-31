@@ -44,7 +44,7 @@ PHP_FPM_BIN=${WORK_ROOT}/php/bin/php-cgi
 PHP_FPM_CONF=${WORK_ROOT}/php/etc/php-fpm.conf
 PHP_FPM_PID=${WORK_ROOT}/php/var/php-fpm.pid
 WORK_LOG_PATH=${WORK_ROOT}/php/log
-PHP_LOG_PATH=$WORK_LOG_PATH/php
+PHP_LOG_PATH=$WORK_LOG_PATH
 PHP_OPTS="-c $PHP_CONF -p ${WORK_ROOT}/php --fpm-config $PHP_FPM_CONF"
 export MAGICK_CONFIGURE_PATH=${WORK_ROOT}
 

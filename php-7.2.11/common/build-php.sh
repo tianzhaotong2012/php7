@@ -50,6 +50,7 @@ echo "Compiling PHP $php_ver ..."
         --enable-pcntl \
         --enable-zip \
         --enable-mysqlnd \
+	--with-pdo-mysql=mysqlnd \
 	--with-openssl="${src_dir}/third" \
         --with-zlib="${src_dir}/third" \
         --with-pear \
