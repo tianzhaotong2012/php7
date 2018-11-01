@@ -1,3 +1,6 @@
+## Prepare ##
+- yum install -y gcc gcc-c++
+- yum -y install libxml2 libxml2-devel
 ## Compile ##
 - run sh local_build.sh
 - cd output
