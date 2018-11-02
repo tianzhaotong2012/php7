@@ -41,7 +41,7 @@ echo "Compiling PHP $php_ver ..."
         --enable-fpm \
         --with-iconv-dir="${src_dir}/third" \
         --with-iconv="${src_dir}/third" \
-        --disable-ipv6 \
+	--with-gd \
         --enable-mbstring \
         --enable-shmop \
         --enable-soap \
@@ -55,7 +55,9 @@ echo "Compiling PHP $php_ver ..."
         --with-zlib="${src_dir}/third" \
         --with-pear \
         --with-curl="${src_dir}/third" \
-        --with-freetype-dir="${src_dir}/third" \
+	--with-freetype-dir=/usr \
+	--with-jpeg-dir="${src_dir}/third" \
+        --with-png-dir="${src_dir}/third" \
 	--with-libxml-dir=/usr   
  
     ##make -j $compile_cores 

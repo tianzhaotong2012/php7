@@ -2,7 +2,7 @@
 
 set -e
 
-old_dir=/home/work/php/php-7.2.11/.tmp/install
+old_dir=/home/work/compile/php7/php-7.2.11/.tmp/install
 
 new_dir=$(cd `dirname $0` && pwd)
 

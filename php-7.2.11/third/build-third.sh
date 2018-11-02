@@ -35,8 +35,14 @@ cd ${tmp_dir}/freetype-2.9.1
 ./configure --prefix=${output_dir} --enable-shared=no
 make
 make install
+ln -s ${output_dir}/include/freetype2/freetype/freetype.h ${output_dir}/include/freetype2/freetype.h
 SCRIPT
     sh $tmp_dir/build_freetype.sh > $tmp_dir/build_freetype.log
+}
+
+compile_freetype_2(){
+	tar zxf ${base_dir}/freetype_2-3-0-100.tar.gz -C ${output_dir}
+	echo "compiling freetype_2-3-0-100"
 }
 
 compile_openssl() {
@@ -89,11 +95,31 @@ SCRIPT
     sh $tmp_dir/build_libxml2.sh > $tmp_dir/build_libxml2.log
 }
 
+compile_libpng(){
+	tar zxf ${base_dir}/libpng-1.6.35.tar.gz -C ${tmp_dir}
+     echo "Compiling libpng..."
+     cat > $tmp_dir/build_libpng.sh <<SCRIPT
+cd ${tmp_dir}/libpng-1.6.35
+./configure --prefix=${output_dir} --enable-shared=no
+make
+make install
+SCRIPT
+	sh $tmp_dir/build_libpng.sh > $tmp_dir/build_libpng.log
+}
+
+compile_libjpg(){
+	tar zxf ${base_dir}/libjpeg_6.tar.gz -C ${output_dir}
+     echo "Compiling libjpg..."
+}
+
 compile_iconv
-compile_freetype
+##compile_freetype
+compile_freetype_2
 compile_openssl
 compile_zlib
 compile_curl
 ##compile_libxml2
+compile_libpng
+compile_libjpg
 
 ##tar zxf ${base_dir}/libxml2-2.6.30.tar.gz -C $output_dir
