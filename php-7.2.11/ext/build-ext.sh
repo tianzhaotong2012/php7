@@ -35,3 +35,14 @@ cp ${output_dir}/mysqli.so ${php_home}/ext
 install -Dm644 "${tmp_dir}/php7.2.11-mysqli/mysqli.ini" "${php_home}/etc/ext/mysqli.ini"
 
 install -Dm644 "${base_dir}/opcache.ini" "${php_home}/etc/ext/opcache.ini"
+
+tar zxvf ${base_dir}/imagick-3.4.3.tgz -C ${tmp_dir}
+cd ${tmp_dir}/imagick-3.4.3
+${php_home}/bin/phpize
+./configure --with-php-config=${php_home}/bin/php-config
+make clean
+make
+
+cp ${tmp_dir}/imagick-3.4.3/modules/imagick.so ${output_dir}/imagick.so
+cp ${output_dir}/imagick.so ${php_home}/ext
+install -Dm644 "${base_dir}/imagick.ini" "${php_home}/etc/ext/imagick.ini"
